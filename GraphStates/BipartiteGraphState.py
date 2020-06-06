@@ -1,13 +1,12 @@
-import networkx as nx
+# import networkx as nx
 from networkx.algorithms import bipartite
-import numpy as np
 from qiskit import *
 
 
 class BipartiteGraphState(QuantumCircuit):
 
-    def __init__():
-        super().__init__(self, bipartite_graph)
+    def __init__(self, bipartite_graph):
+        super().__init__()
         self.graph = bipartite_graph
         # Create a quantum register based on the number of nodes
         # in W + the number of nodes in B (= total number of nodes in G)
@@ -28,6 +27,11 @@ class BipartiteGraphState(QuantumCircuit):
         self.node_dict = self.build_node_dict()
 
         def build_node_dict(self):
+            """
+            create a node dictionary from node to integer index of a qubit
+            in a Qiskit circuit
+            :param self:
+            """
             self.node_dict = dict()
             for count, node in enumerate(self.graph.nodes):
                 self.node_dict[node] = count
@@ -39,6 +43,10 @@ class BipartiteGraphState(QuantumCircuit):
             self.circuit.h(qubit)
 
         def x_measure_white(self):
+            """
+            measure the white qubits in the Pauli X-basis
+            :param self:
+            """
             self.circuit.barrier()
             for vertex in self.black_nodes:
                 self.circuit.measure(vertex, vertex)
@@ -47,6 +55,10 @@ class BipartiteGraphState(QuantumCircuit):
                 self.x_measurement(self.circuit, vertex, vertex)
 
         def x_measure_black(self):
+            """
+            measure the black qubits in the Pauli X-basis
+            :param self:
+            """
             self.circuit.barrier()
             for vertex in self.white_nodes:
                 self.circuit.measure(vertex, vertex)
@@ -55,6 +67,11 @@ class BipartiteGraphState(QuantumCircuit):
                 self.x_measurement(self.circuit, vertex, vertex)
 
         def apply_stabilizer(self, node):
+            """
+            applies the stabilizer generator corresponding to node
+            :param self:
+            :param node: a node in self.graph
+            """
             self.circuit.x(self.node_dict[node])
             for neighbor in self.graph.neighbors(node):
                 self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
