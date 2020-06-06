@@ -16,7 +16,6 @@ setuptools.setup(
     install_requires=[
         "networkx",
         "qiskit",
-        "sympy",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
