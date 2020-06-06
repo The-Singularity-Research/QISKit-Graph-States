@@ -1,7 +1,4 @@
-import networkx as nx
-import numpy as np
 from qiskit import *
-
 
 class GraphState(QuantumCircuit):
 
@@ -21,20 +18,20 @@ class GraphState(QuantumCircuit):
             self.circuit.cz(x, y)
         self.node_dict = self.build_node_dict()
 
-        def build_node_dict(self):
-            self.node_dict = dict()
-            for count, node in enumerate(self.graph.nodes):
-                self.node_dict[node] = count
+    def build_node_dict(self):
+        self.node_dict = dict()
+        for count, node in enumerate(self.graph.nodes):
+            self.node_dict[node] = count
 
-        def x_measurement(self, qubit, cbit):
-            """Measure 'qubit' in the X-basis, and store the result in 'cbit'"""
-            self.circuit.h(qubit)
-            self.circuit.measure(qubit, cbit)
-            self.circuit.h(qubit)
+    def x_measurement(self, qubit, cbit):
+        """Measure 'qubit' in the X-basis, and store the result in 'cbit'"""
+        self.circuit.h(qubit)
+        self.circuit.measure(qubit, cbit)
+        self.circuit.h(qubit)
 
-        def apply_stabilizer(self, node):
-            self.circuit.x(self.node_dict[node])
-            for neighbor in self.graph.neighbors(node):
-                self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
+    def apply_stabilizer(self, node):
+        self.circuit.x(self.node_dict[node])
+        for neighbor in self.graph.neighbors(node):
+            self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
 
 
