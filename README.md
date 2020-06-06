@@ -13,4 +13,4 @@ quantum computation](https://arxiv.org/pdf/0812.2368.pdf))
 - studying entanglement entropy and entanglement as a computational resource (see [Entanglement in Graph States and its Applications](https://arxiv.org/pdf/quant-ph/0602096.pdf)
 - modeling condensed matter physics on IBM quantum computers. 
 
-
+The classes are subclasses of IBM Qiskit objects or of NetworkX objects. 
