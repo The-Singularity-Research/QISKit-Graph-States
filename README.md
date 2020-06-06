@@ -2,7 +2,7 @@
 
 For two notebook tutorials on graph states, see the [error correction notebook](https://github.com/The-Singularity-Research/error-correction) and the [quantum cryptography notebook](https://github.com/The-Singularity-Research/graph-state-quantum-cryptography).
 
-Graph states can be used for:
+Graph states in this repository can be used for:
 
 - Measurement Based Quantum Computing (MBQC) (see [Completeness of classical spin models and universal
 quantum computation](https://arxiv.org/pdf/0812.2368.pdf))
