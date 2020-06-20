@@ -1,5 +1,5 @@
-
 from qiskit import *
+import networkx as nx
 
 class GraphState(QuantumCircuit):
 
@@ -19,7 +19,6 @@ class GraphState(QuantumCircuit):
             self.circuit.cz(x, y)
         self.node_dict = self.build_node_dict()
 
-
     def build_node_dict(self):
         """
         create a node dictionary from node to integer index of a qubit
@@ -35,7 +34,7 @@ class GraphState(QuantumCircuit):
         self.circuit.h(qubit)
         self.circuit.measure(qubit, cbit)
         self.circuit.h(qubit)
-    
+
     def apply_stabilizer(self, node):
         """
         applies the stabilizer generator corresponding to node
@@ -46,4 +45,12 @@ class GraphState(QuantumCircuit):
         for neighbor in self.graph.neighbors(node):
             self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
 
+    def __str__(self):
+        return self.circuit.draw('text')
+
+    def __eq__(self, other):
+        return nx.is_isomorphic(self.graph, other.graph)
+
+    def __hash__(self):
+        return hash((self.graph.nodes, self.graph.edges, self.circuit.width()))
 
