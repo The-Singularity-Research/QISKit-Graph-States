@@ -1,4 +1,3 @@
-
 from networkx.algorithms import bipartite
 from qiskit import *
 
@@ -26,7 +25,6 @@ class BipartiteGraphState(QuantumCircuit):
             self.circuit.cz(x, y)
         self.node_dict = self.build_node_dict()
 
-
     def build_node_dict(self):
         """
         create a node dictionary from node to integer index of a qubit
@@ -35,7 +33,7 @@ class BipartiteGraphState(QuantumCircuit):
         """
         self.node_dict = dict()
         for count, node in enumerate(self.graph.nodes):
-          self.node_dict[node] = count
+            self.node_dict[node] = count
 
     def x_measurement(self, qubit, cbit):
         """Measure 'qubit' in the X-basis, and store the result in 'cbit'"""
@@ -50,10 +48,10 @@ class BipartiteGraphState(QuantumCircuit):
         """
         self.circuit.barrier()
         for vertex in self.black_nodes:
-          self.circuit.measure(vertex, vertex)
+            self.circuit.measure(vertex, vertex)
         self.circuit.barrier()
         for vertex in self.white_nodes:
-          self.x_measurement(self.circuit, vertex, vertex)
+            self.x_measurement(self.circuit, vertex, vertex)
 
     def x_measure_black(self):
         """
@@ -62,10 +60,10 @@ class BipartiteGraphState(QuantumCircuit):
         """
         self.circuit.barrier()
         for vertex in self.white_nodes:
-          self.circuit.measure(vertex, vertex)
+            self.circuit.measure(vertex, vertex)
         self.circuit.barrier()
         for vertex in self.black_nodes:
-          self.x_measurement(self.circuit, vertex, vertex)
+            self.x_measurement(self.circuit, vertex, vertex)
 
     def apply_stabilizer(self, node):
         """
@@ -75,5 +73,4 @@ class BipartiteGraphState(QuantumCircuit):
         """
         self.circuit.x(self.node_dict[node])
         for neighbor in self.graph.neighbors(node):
-          self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
-
+            self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
