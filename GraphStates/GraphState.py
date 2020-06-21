@@ -17,17 +17,14 @@ class GraphState(QuantumCircuit):
         # For each edge e={x,y} apply a controlled-Z gate on its vertices
         for x, y in self.graph.edges:
             self.circuit.cz(x, y)
-        self.node_dict = self.build_node_dict()
-
-    def build_node_dict(self):
-        """
-        create a node dictionary from node to integer index of a qubit
-        in a Qiskit circuit
-        :param self:
-        """
+        #         create a node dictionary from node to integer index of a qubit
+        #         in a Qiskit circuit
         self.node_dict = dict()
         for count, node in enumerate(self.graph.nodes):
             self.node_dict[node] = count
+
+    def add_node(self):
+        raise NotImplemented("Disallowed: don't expect to do this after you have the initial graph state")
 
     def x_measurement(self, qubit, cbit):
         """Measure 'qubit' in the X-basis, and store the result in 'cbit'"""
