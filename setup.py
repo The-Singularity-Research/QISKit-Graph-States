@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="QISKit-Graph-States",  # Replace with your own username
-    version="0.0.7",
+    version="0.0.8",
     author="Amelie Schreiber",
     author_email="thesingularity.research@gmail.com",
     description="Graph states for MBQC, error correction, and quantum cryptography",
