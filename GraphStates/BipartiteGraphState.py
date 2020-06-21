@@ -51,7 +51,7 @@ class BipartiteGraphState(QuantumCircuit):
             self.circuit.measure(vertex, vertex)
         self.circuit.barrier()
         for vertex in self.white_nodes:
-            self.x_measurement(self.circuit, vertex, vertex)
+            self.x_measurement(vertex, vertex)
 
     def x_measure_black(self):
         """
@@ -63,7 +63,7 @@ class BipartiteGraphState(QuantumCircuit):
             self.circuit.measure(vertex, vertex)
         self.circuit.barrier()
         for vertex in self.black_nodes:
-            self.x_measurement(self.circuit, vertex, vertex)
+            self.x_measurement(vertex, vertex)
 
     def apply_stabilizer(self, node):
         """
