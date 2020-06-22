@@ -34,7 +34,8 @@ class GraphStateTest(unittest.TestCase):
         a.apply_stabilizer(0)
         assert a.circuit.depth() == 4
         a.apply_stabilizer(1)
-        assert a.circuit.depth() == 7
+        assert a.circuit.depth() == 5
+
 
 if __name__ == '__main__':
     unittest.main()
