@@ -1,5 +1,6 @@
-from qiskit import *
 import networkx as nx
+from qiskit import *
+
 
 class GraphState(QuantumCircuit):
 
@@ -43,11 +44,10 @@ class GraphState(QuantumCircuit):
             self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
 
     def __str__(self):
-        return self.circuit.draw('text')
+        return str(self.circuit.draw('text'))
 
     def __eq__(self, other):
         return nx.is_isomorphic(self.graph, other.graph)
 
     def __hash__(self):
         return hash((self.graph.nodes, self.graph.edges, self.circuit.width()))
-
