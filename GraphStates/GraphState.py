@@ -41,7 +41,7 @@ class GraphState(QuantumCircuit):
         """
         self.circuit.x(self.node_dict[node])
         for neighbor in self.graph.neighbors(node):
-            self.circuit.cz(self.node_dict[node], self.node_dict[neighbor])
+            self.circuit.z(self.node_dict[neighbor])
 
     def __str__(self):
         return str(self.circuit.draw('text'))
