@@ -6,6 +6,8 @@ class GraphState(QuantumCircuit):
 
     def __init__(self, graph):
         super().__init__()
+        assert isinstance(graph, nx.Graph) or isinstance(graph, nx.DiGraph), \
+            ValueError("Graphs have to be networkx.Graph() or networkx.DiGraph()")
         self.graph = graph
         # Create a quantum register based on the number of nodes in G
         self.qreg = QuantumRegister(len(self.graph.nodes))
