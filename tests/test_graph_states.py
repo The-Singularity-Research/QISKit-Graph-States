@@ -1,17 +1,15 @@
 import unittest
 
 import networkx as nx
-from qiskit import *
-from qiskit.circuit.classicalregister import Clbit
+from qiskit.circuit.classicalregister import Clbit, ClassicalRegister
 
-from GraphStates import *
+from GraphStates import GraphState
 
 
 class GraphStateTest(unittest.TestCase):
     def setUp(self):
         self.G = nx.Graph()
         self.G.add_edges_from([(0, 1), (1, 2)])
-
 
     def test_init_edges(self):
         a = GraphState(self.G)
@@ -22,7 +20,7 @@ class GraphStateTest(unittest.TestCase):
         assert a.node_dict == {0: 0, 1: 1, 2: 2}
 
     def test_x_measurement(self):
-        """this will give you semething different every time,
+        """this will give you something different every time,
          so don't try to test the exact answer"""
         a = GraphState(self.G)
         a.x_measurement(a.qreg[0], a.creg[0])
