@@ -1,5 +1,6 @@
 import networkx as nx
-from qiskit import *
+from qiskit import QuantumCircuit, QuantumRegister
+from qiskit.circuit.classicalregister import ClassicalRegister
 
 
 class GraphState(QuantumCircuit):

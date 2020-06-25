@@ -1,5 +1,5 @@
 from networkx.algorithms import bipartite
-from qiskit import *
+from qiskit import ClassicalRegister, QuantumRegister, QuantumCircuit
 
 
 class BipartiteGraphState(QuantumCircuit):
